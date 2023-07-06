@@ -14,7 +14,7 @@ source:
     - add-types-to-fortran-subroutines.patch
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage('mpi_serial', max_pin='x.x') }}
