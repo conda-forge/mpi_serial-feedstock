@@ -337,6 +337,36 @@ diff -ruN -x __pycache__ -x obj -x '*~' -x tags -x TAGS -x autom4te.cache mpi-se
       ( int *group1, int *n, int *ranks1,
         int *group2, int *ranks2, int *ierror)
  {
+diff -ruN -x __pycache__ -x obj -x '*~' -x tags -x TAGS -x autom4te.cache mpi-serial-MPIserial_2.3.0.fixed-makefile/info.c mpi-serial-MPIserial_2.3.0.types/info.c
+--- mpi-serial-MPIserial_2.3.0.fixed-makefile/info.c	2023-07-06 20:54:27.300881622 +0200
++++ mpi-serial-MPIserial_2.3.0.types/info.c	2023-07-06 22:16:32.372177111 +0200
+@@ -6,7 +6,7 @@
+ /***/
+ 
+ 
+-FC_FUNC( mpi_info_create , MPI_INFO_CREATE ) (int *info, int *ierror)
++void FC_FUNC( mpi_info_create , MPI_INFO_CREATE ) (int *info, int *ierror)
+ {
+   *ierror=MPI_Info_create(info);
+ }
+@@ -24,7 +24,7 @@
+ /***/
+ 
+ 
+-FC_FUNC( mpi_info_set , MPI_INFO_SET ) (int *info, char *key, char *value, int *ierror)
++void FC_FUNC( mpi_info_set , MPI_INFO_SET ) (int *info, char *key, char *value, int *ierror)
+ {
+   *ierror=MPI_Info_set(*info, key, value);
+ }
+@@ -46,7 +46,7 @@
+     return(MPI_SUCCESS);
+ }
+ 
+-FC_FUNC( mpi_info_free , MPI_INFO_FREE ) (int *info, int *ierror)
++void FC_FUNC( mpi_info_free , MPI_INFO_FREE ) (int *info, int *ierror)
+ {
+   *ierror=MPI_Info_free(info);
+ }
 diff -ruN -x __pycache__ -x obj -x '*~' -x tags -x TAGS -x autom4te.cache mpi-serial-MPIserial_2.3.0.fixed-makefile/mpi.c mpi-serial-MPIserial_2.3.0.types/mpi.c
 --- mpi-serial-MPIserial_2.3.0.fixed-makefile/mpi.c	2023-07-06 20:54:27.300881622 +0200
 +++ mpi-serial-MPIserial_2.3.0.types/mpi.c	2023-07-06 20:53:51.302722482 +0200
