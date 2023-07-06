@@ -1,0 +1,813 @@
+diff -ruN -x __pycache__ -x obj -x '*~' -x tags -x TAGS -x autom4te.cache mpi-serial-MPIserial_2.3.0.fixed-makefile/cart.c mpi-serial-MPIserial_2.3.0/cart.c
+--- mpi-serial-MPIserial_2.3.0.fixed-makefile/cart.c	2021-01-03 04:34:49.000000000 +0100
++++ mpi-serial-MPIserial_2.3.0/cart.c	2023-07-06 17:33:03.181154921 +0200
+@@ -7,7 +7,7 @@
+  */
+ 
+ 
+-FC_FUNC( mpi_cart_create , MPI_CART_CREATE )
++void FC_FUNC( mpi_cart_create , MPI_CART_CREATE )
+ 	 ( int *comm_old, int *ndims, int *dims, int *periods,
+            int *reorder, int *comm_cart, int *ierr)
+ {
+@@ -44,7 +44,7 @@
+  */
+ 
+ 
+-FC_FUNC( mpi_cart_get , MPI_CART_GET )
++void FC_FUNC( mpi_cart_get , MPI_CART_GET )
+          (int * comm, int * maxdims, int * dims,
+           int * periods, int * coords, int * ierr)
+ {
+@@ -73,7 +73,7 @@
+  */
+ 
+ 
+-FC_FUNC( mpi_cart_coords , MPI_CART_COORDS)
++void FC_FUNC( mpi_cart_coords , MPI_CART_COORDS)
+          (int *comm, int *rank, int *maxdims, int *coords, int *ierr)
+ {
+   *ierr = MPI_Cart_coords(*comm, *rank, *maxdims, coords);
+@@ -104,7 +104,7 @@
+  * node only, every dimension must be "1" or it is erroneous
+  */
+ 
+-FC_FUNC( mpi_dims_create , MPI_DIMS_CREATE )
++void FC_FUNC( mpi_dims_create , MPI_DIMS_CREATE )
+          (int *nnodes, int *ndims, int * dims, int *ierr)
+ {
+   *ierr = MPI_Dims_create(*nnodes, *ndims, dims);
+diff -ruN -x __pycache__ -x obj -x '*~' -x tags -x TAGS -x autom4te.cache mpi-serial-MPIserial_2.3.0.fixed-makefile/collective.c mpi-serial-MPIserial_2.3.0/collective.c
+--- mpi-serial-MPIserial_2.3.0.fixed-makefile/collective.c	2021-01-03 04:34:49.000000000 +0100
++++ mpi-serial-MPIserial_2.3.0/collective.c	2023-07-06 17:34:25.837550254 +0200
+@@ -8,7 +8,7 @@
+  */
+ 
+ 
+-FC_FUNC( mpi_barrier , MPI_BARRIER )(int *comm, int *ierror)
++void FC_FUNC( mpi_barrier , MPI_BARRIER )(int *comm, int *ierror)
+ {
+   *ierror=MPI_Barrier( *comm );
+ }
+@@ -23,7 +23,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_bcast , MPI_BCAST )(void *buffer, int *count, int *datatype,
++void FC_FUNC( mpi_bcast , MPI_BCAST )(void *buffer, int *count, int *datatype,
+ 				   int *root, int *comm, int *ierror )
+ {
+   *ierror=MPI_Bcast(buffer, *count, *datatype, *root, *comm);
+@@ -51,7 +51,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_gather , MPI_GATHER )
++void FC_FUNC( mpi_gather , MPI_GATHER )
+                        (void *sendbuf, int *sendcount, int *sendtype,
+ 			void *recvbuf, int *recvcount, int *recvtype,
+ 			int *root, int *comm, int *ierror)
+@@ -89,7 +89,7 @@
+ 
+ 
+ 
+-FC_FUNC( mpi_gatherv , MPI_GATHERV )
++void FC_FUNC( mpi_gatherv , MPI_GATHERV )
+                         ( void *sendbuf, int *sendcount, int *sendtype,
+ 			  void *recvbuf, int *recvcounts, int *displs,
+ 			  int *recvtype, int *root, int *comm, int *ierror)
+@@ -135,7 +135,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_allgather , MPI_ALLGATHER )
++void FC_FUNC( mpi_allgather , MPI_ALLGATHER )
+                           ( void *sendbuf, int *sendcount, int *sendtype,
+ 			    void *recvbuf, int *recvcount, int *recvtype,
+ 			    int *comm, int *ierror)
+@@ -165,7 +165,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_allgatherv , MPI_ALLGATHERV )
++void FC_FUNC( mpi_allgatherv , MPI_ALLGATHERV )
+                           ( void *sendbuf, int *sendcount, int *sendtype,
+ 			    void *recvbuf, int *recvcounts, int *displs,
+                             int *recvtype, int *comm, int *ierror)
+@@ -205,7 +205,7 @@
+  * data from source to dest pointer
+  */
+ 
+-FC_FUNC( mpi_scatter, MPI_SCATTER )
++void FC_FUNC( mpi_scatter, MPI_SCATTER )
+                          ( void *sendbuf, int *sendcount, int *sendtype,
+ 			 void *recvbuf, int *recvcount, int *recvtype,
+ 			 int *root, int *comm, int *ierror)
+@@ -242,7 +242,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_scatterv , MPI_SCATTERV )
++void FC_FUNC( mpi_scatterv , MPI_SCATTERV )
+                          ( void *sendbuf, int *sendcounts, int *displs,
+ 			   int *sendtype, void *recvbuf, int *recvcount,
+ 			   int *recvtype, int *root, int *comm, int *ierror)
+@@ -287,7 +287,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_reduce , MPI_REDUCE )
++void FC_FUNC( mpi_reduce , MPI_REDUCE )
+                        ( void *sendbuf, void *recvbuf, int *count,
+ 			 int *datatype, int *op, int *root, int *comm,
+ 			 int *ierror)
+@@ -318,7 +318,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_allreduce , MPI_ALLREDUCE )
++void FC_FUNC( mpi_allreduce , MPI_ALLREDUCE )
+                           ( void *sendbuf, void *recvbuf, int *count,
+ 			    int *datatype, int *op, int *comm, int *ierror)
+ {
+@@ -350,7 +350,7 @@
+  * in a group. We do this to only one proc, so recvcounts[0] is only used.
+  */
+ 
+-FC_FUNC(mpi_reduce_scatter, MPI_REDUCE_SCATTER)
++void FC_FUNC(mpi_reduce_scatter, MPI_REDUCE_SCATTER)
+                 (void * sendbuf, void * recvbuf, int *recvcounts,
+                  int *datatype, int *op, int *comm, int *ierr)
+ {
+@@ -368,7 +368,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_scan , MPI_SCAN)
++void FC_FUNC( mpi_scan , MPI_SCAN)
+                        ( void *sendbuf, void *recvbuf, int *count,
+                          int *datatype, int *op, int *comm,
+                          int *ierror)
+@@ -390,7 +390,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_alltoall , MPI_ALLTOALL )
++void FC_FUNC( mpi_alltoall , MPI_ALLTOALL )
+                         ( void *sendbuf, int *sendcount, int *sendtype,
+ 			  void *recvbuf, int *recvcount, int *recvtype,
+                           int *comm, int *ierror )
+@@ -415,7 +415,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_alltoallv , MPI_ALLTOALLV )
++void FC_FUNC( mpi_alltoallv , MPI_ALLTOALLV )
+            ( void *sendbuf, int *sendcounts, int *sdispls, int *sendtype,
+ 	     void *recvbuf, int *recvcounts, int *rdispls, int *recvtype,
+              int *comm, int *ierror )
+@@ -459,7 +459,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_alltoallw , MPI_ALLTOALLW )
++void FC_FUNC( mpi_alltoallw , MPI_ALLTOALLW )
+            ( void *sendbuf, int *sendcounts, int *sdispls, int *sendtypes,
+ 	     void *recvbuf, int *recvcounts, int *rdispls, int *recvtypes,
+              int *comm, int *ierror )
+diff -ruN -x __pycache__ -x obj -x '*~' -x tags -x TAGS -x autom4te.cache mpi-serial-MPIserial_2.3.0.fixed-makefile/comm.c mpi-serial-MPIserial_2.3.0/comm.c
+--- mpi-serial-MPIserial_2.3.0.fixed-makefile/comm.c	2021-01-03 04:34:49.000000000 +0100
++++ mpi-serial-MPIserial_2.3.0/comm.c	2023-07-06 17:33:47.163365281 +0200
+@@ -30,7 +30,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_comm_free , MPI_COMM_FREE )(int *comm, int *ierror)
++void FC_FUNC( mpi_comm_free , MPI_COMM_FREE )(int *comm, int *ierror)
+ {
+   *ierror=MPI_Comm_free(comm);
+ }
+@@ -81,7 +81,7 @@
+ 
+ 
+ 
+-FC_FUNC( mpi_comm_size , MPI_COMM_SIZE )(int *comm, int *size, int *ierror)
++void FC_FUNC( mpi_comm_size , MPI_COMM_SIZE )(int *comm, int *size, int *ierror)
+ {
+   *ierror=MPI_Comm_size(*comm, size);
+ }
+@@ -99,7 +99,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_comm_rank , MPI_COMM_RANK )(int *comm, int *rank, int *ierror)
++void FC_FUNC( mpi_comm_rank , MPI_COMM_RANK )(int *comm, int *rank, int *ierror)
+ {
+   *ierror=MPI_Comm_rank( *comm, rank);
+ }
+@@ -117,7 +117,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_comm_dup , MPI_COMM_DUP )(int *comm, int *newcomm, int *ierror)
++void FC_FUNC( mpi_comm_dup , MPI_COMM_DUP )(int *comm, int *newcomm, int *ierror)
+ {
+ 
+   *ierror=MPI_Comm_dup( *comm, newcomm);
+@@ -141,7 +141,7 @@
+ /*********/
+ 
+ 
+-int FC_FUNC( mpi_comm_create, MPI_COMM_CREATE)
++void FC_FUNC( mpi_comm_create, MPI_COMM_CREATE)
+      (int *comm, int *group, int *newcomm, int *ierror)
+ {
+   *ierror=MPI_Comm_create(*comm,*group,newcomm);
+@@ -164,7 +164,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_comm_split, MPI_COMM_SPLIT )
++void FC_FUNC( mpi_comm_split, MPI_COMM_SPLIT )
+      (int *comm, int *color, int *key, int *newcomm, int *ierror)
+ {
+   *ierror=MPI_Comm_split(*comm,*color,*key,newcomm);
+@@ -187,7 +187,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_comm_group, MPI_COMM_GROUP )
++void FC_FUNC( mpi_comm_group, MPI_COMM_GROUP )
+      (int *comm, int *group, int *ierror)
+ {
+   *ierror= MPI_Comm_group(*comm, group);
+@@ -209,7 +209,7 @@
+  *
+  */
+ 
+-FC_FUNC(mpi_intercomm_create, MPI_INTERCOMM_CREATE)(
++void FC_FUNC(mpi_intercomm_create, MPI_INTERCOMM_CREATE)(
+                           int * local_comm, int * local_leader,
+                           int * peer_comm,  int * remote_leader,
+                           int * tag, int * newintercomm, int* ierr)
+diff -ruN -x __pycache__ -x obj -x '*~' -x tags -x TAGS -x autom4te.cache mpi-serial-MPIserial_2.3.0.fixed-makefile/getcount.c mpi-serial-MPIserial_2.3.0/getcount.c
+--- mpi-serial-MPIserial_2.3.0.fixed-makefile/getcount.c	2021-01-03 04:34:49.000000000 +0100
++++ mpi-serial-MPIserial_2.3.0/getcount.c	2023-07-06 17:34:37.323605190 +0200
+@@ -8,7 +8,7 @@
+ #include "mpiP.h"
+ 
+ 
+-FC_FUNC( mpi_get_count , MPI_GET_COUNT )
++void FC_FUNC( mpi_get_count , MPI_GET_COUNT )
+ 	 (int *status, int *datatype, int *count, int *ierr)
+ {
+   *ierr = MPI_Get_count((MPI_Status *)status, *datatype, count);
+@@ -24,7 +24,7 @@
+ /********/
+ 
+ 
+-FC_FUNC( mpi_get_elements , MPI_GET_ELEMENTS )
++void FC_FUNC( mpi_get_elements , MPI_GET_ELEMENTS )
+ 	 (MPI_Status *status, int *datatype, int *count, int *ierr)
+ {
+   *ierr = MPI_Get_elements(status, *datatype, count);
+diff -ruN -x __pycache__ -x obj -x '*~' -x tags -x TAGS -x autom4te.cache mpi-serial-MPIserial_2.3.0.fixed-makefile/group.c mpi-serial-MPIserial_2.3.0/group.c
+--- mpi-serial-MPIserial_2.3.0.fixed-makefile/group.c	2021-01-03 04:34:49.000000000 +0100
++++ mpi-serial-MPIserial_2.3.0/group.c	2023-07-06 17:34:56.034694682 +0200
+@@ -5,7 +5,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_group_incl, MPI_GROUP_INCL )
++void FC_FUNC( mpi_group_incl, MPI_GROUP_INCL )
+      (int *group, int *n, int *ranks, int *newgroup, int *ierror)
+ {
+   *ierror= MPI_Group_incl(*group, *n, ranks, newgroup);
+@@ -46,7 +46,7 @@
+  */
+ 
+ 
+-FC_FUNC( mpi_group_range_incl, MPI_GROUP_RANGE_INCL )
++void FC_FUNC( mpi_group_range_incl, MPI_GROUP_RANGE_INCL )
+      (int *group, int *n, int ranges[][3], int *newgroup, int *ierror)
+ {
+   *ierror= MPI_Group_range_incl(*group, *n, ranges, newgroup);
+@@ -84,7 +84,7 @@
+ 
+ 
+ 
+-FC_FUNC( mpi_group_union, MPI_GROUP_UNION )
++void FC_FUNC( mpi_group_union, MPI_GROUP_UNION )
+      (int *group1, int *group2, int *newgroup, int *ierror)
+ {
+   *ierror= MPI_Group_union(*group1,*group2,newgroup);
+@@ -114,7 +114,7 @@
+ 
+ 
+ 
+-FC_FUNC( mpi_group_intersection, MPI_GROUP_INTERSECTION )
++void FC_FUNC( mpi_group_intersection, MPI_GROUP_INTERSECTION )
+      (int *group1, int *group2, int *newgroup, int *ierror)
+ {
+   *ierror= MPI_Group_intersection(*group1,*group2,newgroup);
+@@ -146,7 +146,7 @@
+ 
+ 
+ 
+-FC_FUNC( mpi_group_difference, MPI_GROUP_DIFFERENCE )
++void FC_FUNC( mpi_group_difference, MPI_GROUP_DIFFERENCE )
+      (int *group1, int *group2, int *newgroup, int *ierror)
+ {
+   *ierror= MPI_Group_difference(*group1,*group2,newgroup);
+@@ -177,7 +177,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_group_free, MPI_GROUP_FREE )(int *group, int *ierror)
++void FC_FUNC( mpi_group_free, MPI_GROUP_FREE )(int *group, int *ierror)
+ {
+   *ierror= MPI_Group_free(group);
+ }
+@@ -195,7 +195,7 @@
+ 
+ 
+ 
+-FC_FUNC( mpi_group_translate_ranks, MPI_GROUP_TRANSLATE_RANKS )
++void FC_FUNC( mpi_group_translate_ranks, MPI_GROUP_TRANSLATE_RANKS )
+      ( int *group1, int *n, int *ranks1,
+        int *group2, int *ranks2, int *ierror)
+ {
+diff -ruN -x __pycache__ -x obj -x '*~' -x tags -x TAGS -x autom4te.cache mpi-serial-MPIserial_2.3.0.fixed-makefile/info.c mpi-serial-MPIserial_2.3.0/info.c
+--- mpi-serial-MPIserial_2.3.0.fixed-makefile/info.c	2021-01-03 04:34:49.000000000 +0100
++++ mpi-serial-MPIserial_2.3.0/info.c	2023-07-06 17:35:32.136867352 +0200
+@@ -6,7 +6,7 @@
+ /***/
+ 
+ 
+-FC_FUNC( mpi_info_create , MPI_INFO_CREATE ) (int *info, int *ierror)
++void FC_FUNC( mpi_info_create , MPI_INFO_CREATE ) (int *info, int *ierror)
+ {
+   *ierror=MPI_Info_create(info);
+ }
+@@ -24,7 +24,7 @@
+ /***/
+ 
+ 
+-FC_FUNC( mpi_info_set , MPI_INFO_SET ) (int *info, char *key, char *value, int *ierror)
++void FC_FUNC( mpi_info_set , MPI_INFO_SET ) (int *info, char *key, char *value, int *ierror)
+ {
+   *ierror=MPI_Info_set(*info, key, value);
+ }
+@@ -38,7 +38,7 @@
+ 
+ /***/
+ 
+-FC_FUNC( mpi_info_free , MPI_INFO_FREE ) (int *info, int *ierror)
++void FC_FUNC( mpi_info_free , MPI_INFO_FREE ) (int *info, int *ierror)
+ {
+   *ierror=MPI_Info_free(info);
+ }
+diff -ruN -x __pycache__ -x obj -x '*~' -x tags -x TAGS -x autom4te.cache mpi-serial-MPIserial_2.3.0.fixed-makefile/mpi.c mpi-serial-MPIserial_2.3.0/mpi.c
+--- mpi-serial-MPIserial_2.3.0.fixed-makefile/mpi.c	2021-01-03 04:34:49.000000000 +0100
++++ mpi-serial-MPIserial_2.3.0/mpi.c	2023-07-06 17:36:09.422045701 +0200
+@@ -28,7 +28,7 @@
+ 
+ 
+ 
+-FC_FUNC( mpi_init_fort , MPI_INIT_FORT)
++void FC_FUNC( mpi_init_fort , MPI_INIT_FORT)
+                           (int *f_MPI_COMM_WORLD,
+                            int *f_MPI_ANY_SOURCE, int *f_MPI_ANY_TAG,
+ 			   int *f_MPI_PROC_NULL, int *f_MPI_ROOT,
+@@ -193,7 +193,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_finalize, MPI_FINALIZE )(int *ierror)
++void FC_FUNC( mpi_finalize, MPI_FINALIZE )(int *ierror)
+ {
+   *ierror=MPI_Finalize();
+ }
+@@ -221,7 +221,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_abort , MPI_ABORT )(int *comm, int *errorcode, int *ierror)
++void FC_FUNC( mpi_abort , MPI_ABORT )(int *comm, int *errorcode, int *ierror)
+ {
+   *ierror=MPI_Abort( *comm, *errorcode);
+ }
+@@ -239,7 +239,7 @@
+ 
+ 
+ 
+-FC_FUNC( mpi_error_string , MPI_ERROR_STRING)
++void FC_FUNC( mpi_error_string , MPI_ERROR_STRING)
+                              (int *errorcode, char *string,
+ 			      int *resultlen, int *ierror)
+ {
+@@ -259,7 +259,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_get_processor_name , MPI_GET_PROCESSOR_NAME )
++void FC_FUNC( mpi_get_processor_name , MPI_GET_PROCESSOR_NAME )
+                           (char *name, int *resultlen, int *ierror)
+ {
+   *ierror=MPI_Get_processor_name(name,resultlen);
+@@ -286,7 +286,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_initialized , MPI_INITIALIZED )(int *flag, int *ierror)
++void FC_FUNC( mpi_initialized , MPI_INITIALIZED )(int *flag, int *ierror)
+ {
+   *ierror=MPI_Initialized(flag);
+ }
+diff -ruN -x __pycache__ -x obj -x '*~' -x tags -x TAGS -x autom4te.cache mpi-serial-MPIserial_2.3.0.fixed-makefile/op.c mpi-serial-MPIserial_2.3.0/op.c
+--- mpi-serial-MPIserial_2.3.0.fixed-makefile/op.c	2021-01-03 04:34:49.000000000 +0100
++++ mpi-serial-MPIserial_2.3.0/op.c	2023-07-06 17:37:12.475347279 +0200
+@@ -5,7 +5,7 @@
+  * suffices here.
+  */
+ 
+-FC_FUNC(mpi_op_create, MPI_OP_CREATE)(MPI_User_function *func, int * commute, int * op, int * ierr)
++void FC_FUNC(mpi_op_create, MPI_OP_CREATE)(MPI_User_function *func, int * commute, int * op, int * ierr)
+ {
+   *ierr = MPI_Op_create(func, *commute, op);
+ }
+@@ -16,7 +16,7 @@
+   return MPI_SUCCESS;
+ }
+ 
+-FC_FUNC(mpi_op_free, MPI_OP_FREE)(int * op, int * ierr)
++void FC_FUNC(mpi_op_free, MPI_OP_FREE)(int * op, int * ierr)
+ {
+   *ierr = MPI_Op_free(op);
+ }
+diff -ruN -x __pycache__ -x obj -x '*~' -x tags -x TAGS -x autom4te.cache mpi-serial-MPIserial_2.3.0.fixed-makefile/pack.c mpi-serial-MPIserial_2.3.0/pack.c
+--- mpi-serial-MPIserial_2.3.0.fixed-makefile/pack.c	2021-01-03 04:34:49.000000000 +0100
++++ mpi-serial-MPIserial_2.3.0/pack.c	2023-07-06 17:37:26.166412761 +0200
+@@ -9,7 +9,7 @@
+  */
+ 
+ 
+-FC_FUNC( mpi_pack , MPI_PACK )
++void FC_FUNC( mpi_pack , MPI_PACK )
+      ( void *inbuf, int *incount, int *datatype,
+        void *outbuf, int *outsize, int *position, int *comm, int *ierror)
+ {
+@@ -57,7 +57,7 @@
+   }
+ }
+ 
+-FC_FUNC( mpi_pack_size, MPI_PACK_SIZE )(int * incount, int * datatype,
++void FC_FUNC( mpi_pack_size, MPI_PACK_SIZE )(int * incount, int * datatype,
+                                           int * comm, long * size, int *ierr)
+ {
+   *ierr = MPI_Pack_size(*incount, *datatype, *comm, size);
+@@ -96,7 +96,7 @@
+  */
+ 
+ 
+-FC_FUNC( mpi_unpack , MPI_UNPACK )
++void FC_FUNC( mpi_unpack , MPI_UNPACK )
+      ( void *inbuf, int *insize, int *position,
+        void *outbuf, int *outcount, int *datatype,
+        int *comm, int *ierror )
+diff -ruN -x __pycache__ -x obj -x '*~' -x tags -x TAGS -x autom4te.cache mpi-serial-MPIserial_2.3.0.fixed-makefile/probe.c mpi-serial-MPIserial_2.3.0/probe.c
+--- mpi-serial-MPIserial_2.3.0.fixed-makefile/probe.c	2021-01-03 04:34:49.000000000 +0100
++++ mpi-serial-MPIserial_2.3.0/probe.c	2023-07-06 17:37:45.974507500 +0200
+@@ -7,7 +7,7 @@
+ 	  *((int *)tag) == ((Req *)r)->tag );
+ }
+ 
+-FC_FUNC(mpi_iprobe, MPI_IPROBE)(int * source, int * tag, int * comm,
++void FC_FUNC(mpi_iprobe, MPI_IPROBE)(int * source, int * tag, int * comm,
+                                   int * flag, int *status, int * ierr)
+ {
+   *ierr = MPI_Iprobe(*source, *tag, *comm, flag, mpi_c_status(status));
+@@ -62,7 +62,7 @@
+ //probe:  wait for message, and return status
+ // (either message will immediately be available, or deadlock.
+ 
+-FC_FUNC(mpi_probe,MPI_PROBE)(int *source, int *tag, int *comm, int *status,
++void FC_FUNC(mpi_probe,MPI_PROBE)(int *source, int *tag, int *comm, int *status,
+ 			     int *ierr)
+ {
+   *ierr=MPI_Probe(*source,*tag,*comm,mpi_c_status(status));
+diff -ruN -x __pycache__ -x obj -x '*~' -x tags -x TAGS -x autom4te.cache mpi-serial-MPIserial_2.3.0.fixed-makefile/recv.c mpi-serial-MPIserial_2.3.0/recv.c
+--- mpi-serial-MPIserial_2.3.0.fixed-makefile/recv.c	2021-01-03 04:34:49.000000000 +0100
++++ mpi-serial-MPIserial_2.3.0/recv.c	2023-07-06 17:38:06.209604281 +0200
+@@ -24,7 +24,7 @@
+ 
+ 
+ 
+-FC_FUNC( mpi_irecv , MPI_IRECV )(void *buf, int *count, int *datatype,
++void FC_FUNC( mpi_irecv , MPI_IRECV )(void *buf, int *count, int *datatype,
+ 				   int *source, int *tag, int *comm,
+ 				   int *request, int *ierror)
+ {
+@@ -108,7 +108,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_recv , MPI_RECV )(void *buf, int *count, int *datatype,
++void FC_FUNC( mpi_recv , MPI_RECV )(void *buf, int *count, int *datatype,
+ 				 int *source, int *tag, int *comm,
+ 				 int *status, int *ierror)
+ {
+diff -ruN -x __pycache__ -x obj -x '*~' -x tags -x TAGS -x autom4te.cache mpi-serial-MPIserial_2.3.0.fixed-makefile/req.c mpi-serial-MPIserial_2.3.0/req.c
+--- mpi-serial-MPIserial_2.3.0.fixed-makefile/req.c	2021-01-03 04:34:49.000000000 +0100
++++ mpi-serial-MPIserial_2.3.0/req.c	2023-07-06 17:38:30.125718669 +0200
+@@ -7,7 +7,7 @@
+ 
+ 
+ 
+-FC_FUNC( mpi_test , MPI_TEST)(int *request, int *flag, int *status,
++void FC_FUNC( mpi_test , MPI_TEST)(int *request, int *flag, int *status,
+                                 int *ierror)
+ {
+   *ierror=MPI_Test( (void *)request ,flag,mpi_c_status(status));
+@@ -52,7 +52,7 @@
+ 
+ 
+ 
+-FC_FUNC( mpi_wait , MPI_WAIT )(int *request, int *status, int *ierror)
++void FC_FUNC( mpi_wait , MPI_WAIT )(int *request, int *status, int *ierror)
+ {
+   *ierror=MPI_Wait( (void *)request, mpi_c_status(status) );
+ }
+@@ -78,7 +78,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC( mpi_waitany , MPI_WAITANY )(int *count, int *requests,
++void FC_FUNC( mpi_waitany , MPI_WAITANY )(int *count, int *requests,
+                                        int *index, int *status, int *ierror)
+ {
+ 
+@@ -111,7 +111,7 @@
+  * flag=0 means no match was found.
+  */
+ 
+-FC_FUNC(mpi_testany, MPI_TESTANY)
++void FC_FUNC(mpi_testany, MPI_TESTANY)
+          (int * count, int * array_of_requests,
+           int * index, int * flag, int *status, int * ierr)
+ {
+@@ -142,7 +142,7 @@
+  * testall: tests that all requests have completed,
+  * if so return request array, otherwise set flag=0
+  */
+-FC_FUNC(mpi_testall, MPI_TESTALL)
++void FC_FUNC(mpi_testall, MPI_TESTALL)
+          (int * count, int * array_of_requests, int *flag,
+           int * array_of_statuses, int * ierr)
+ {
+@@ -174,7 +174,7 @@
+  * completed, abort with an error
+  */
+ 
+-FC_FUNC( mpi_waitall , MPI_WAITALL )(int *count, int *array_of_requests,
++void FC_FUNC( mpi_waitall , MPI_WAITALL )(int *count, int *array_of_requests,
+                                        int *array_of_statuses, int *ierror)
+ {
+   *ierror=MPI_Waitall(*count, (void *)array_of_requests,
+@@ -208,7 +208,7 @@
+  * status in an array (if it is available
+  */
+ 
+-FC_FUNC(mpi_testsome, MPI_TESTSOME)
++void FC_FUNC(mpi_testsome, MPI_TESTSOME)
+          (int * incount, int * array_of_requests, int * outcount,
+           int * array_of_indices, int * array_of_statuses, int * ierr)
+ {
+@@ -240,7 +240,7 @@
+  * requests.  If no statuses are available, abort with error
+  */
+ 
+-FC_FUNC(mpi_waitsome, MPI_WAITSOME)
++void FC_FUNC(mpi_waitsome, MPI_WAITSOME)
+          (int * incount, int * array_of_requests, int * outcount,
+           int * array_of_indices, int *array_of_statuses, int * ierr)
+ {
+@@ -267,7 +267,7 @@
+ /* Request_free:  Frees the handle and request
+  */
+ 
+-FC_FUNC(mpi_request_free, MPI_REQUEST_FREE)
++void FC_FUNC(mpi_request_free, MPI_REQUEST_FREE)
+          (int * request, int * ierr)
+ {
+   *ierr = MPI_Request_free(request);
+diff -ruN -x __pycache__ -x obj -x '*~' -x tags -x TAGS -x autom4te.cache mpi-serial-MPIserial_2.3.0.fixed-makefile/send.c mpi-serial-MPIserial_2.3.0/send.c
+--- mpi-serial-MPIserial_2.3.0.fixed-makefile/send.c	2021-01-03 04:34:49.000000000 +0100
++++ mpi-serial-MPIserial_2.3.0/send.c	2023-07-06 17:38:48.058804440 +0200
+@@ -22,7 +22,7 @@
+ 
+ 
+ 
+-FC_FUNC( mpi_isend , MPI_ISEND )(void *buf, int *count, int *datatype,
++void FC_FUNC( mpi_isend , MPI_ISEND )(void *buf, int *count, int *datatype,
+    int *dest, int *tag, int *comm, int *req, int *ierror)
+ {
+ 
+@@ -100,7 +100,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC(mpi_send, MPI_SEND) ( void *buf, int *count, int *datatype,
++void FC_FUNC(mpi_send, MPI_SEND) ( void *buf, int *count, int *datatype,
+  		                int *dest, int *tag, int *comm, int *ierror)
+ {
+   *ierror=MPI_Send(buf, *count, *datatype, *dest, *tag, *comm);
+@@ -132,7 +132,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC(mpi_ssend, MPI_SSEND) ( void *buf, int *count, int *datatype,
++void FC_FUNC(mpi_ssend, MPI_SSEND) ( void *buf, int *count, int *datatype,
+                                   int *dest, int *tag, int *comm, int *ierror)
+ {
+   *ierror=MPI_Send(buf, *count, *datatype, *dest, *tag, *comm);
+@@ -151,7 +151,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC(mpi_rsend, MPI_RSEND) ( void *buf, int *count, int *datatype,
++void FC_FUNC(mpi_rsend, MPI_RSEND) ( void *buf, int *count, int *datatype,
+                                   int *dest, int *tag, int *comm, int *ierror)
+ {
+   *ierror=MPI_Send(buf, *count, *datatype, *dest, *tag, *comm);
+@@ -172,7 +172,7 @@
+ 
+ 
+ 
+-FC_FUNC( mpi_irsend , MPI_IRSEND )(void *buf, int *count, int *datatype,
++void FC_FUNC( mpi_irsend , MPI_IRSEND )(void *buf, int *count, int *datatype,
+    int *dest, int *tag, int *comm, int *req, int *ierror)
+ {
+ 
+@@ -215,7 +215,7 @@
+ /*********/
+ 
+ 
+-FC_FUNC(mpi_sendrecv, MPI_SENDRECV) (
++void FC_FUNC(mpi_sendrecv, MPI_SENDRECV) (
+      void *sendbuf, int *sendcount, int *sendtype, int *dest, int *sendtag,
+      void *recvbuf, int *recvcount, int *recvtype, int *source, int *recvtag,
+      int *comm, int *status,
+diff -ruN -x __pycache__ -x obj -x '*~' -x tags -x TAGS -x autom4te.cache mpi-serial-MPIserial_2.3.0.fixed-makefile/type.c mpi-serial-MPIserial_2.3.0/type.c
+--- mpi-serial-MPIserial_2.3.0.fixed-makefile/type.c	2021-01-03 04:34:49.000000000 +0100
++++ mpi-serial-MPIserial_2.3.0/type.c	2023-07-06 17:42:09.394828321 +0200
+@@ -189,7 +189,7 @@
+  * All other type constructors call this function.
+  */
+ 
+-FC_FUNC( mpi_type_struct, MPI_TYPE_STRUCT )
++void FC_FUNC( mpi_type_struct, MPI_TYPE_STRUCT )
+          (int * count,       int * blocklens, long * displacements,
+           int *oldtypes_ptr, int *newtype,    int *ierror)
+ {
+@@ -357,7 +357,7 @@
+  *  MPI_Type_struct()
+  */
+ 
+-FC_FUNC( mpi_type_contiguous, MPI_TYPE_CONTIGUOUS )
++void FC_FUNC( mpi_type_contiguous, MPI_TYPE_CONTIGUOUS )
+          (int *count, int *oldtype, int * newtype, int * ierr)
+ {
+   *ierr = MPI_Type_contiguous(*count, *oldtype, newtype);
+@@ -398,7 +398,7 @@
+ /* Type_vector
+  */
+ 
+-FC_FUNC( mpi_type_vector, MPI_TYPE_VECTOR )
++void FC_FUNC( mpi_type_vector, MPI_TYPE_VECTOR )
+          (int * count, int * blocklen, int * stride,
+           int * oldtype, int * newtype, int * ierr)
+ {
+@@ -431,7 +431,7 @@
+ 
+ /*******************************************************/
+ 
+-FC_FUNC( mpi_type_hvector, MPI_TYPE_HVECTOR )
++void FC_FUNC( mpi_type_hvector, MPI_TYPE_HVECTOR )
+          (int * count,   long * blocklen, long * stride,
+           int * oldtype, int * newtype,   int * ierr)
+ {
+@@ -448,7 +448,7 @@
+   return Type_hvector(count, blocklen, stride, old_ptr, new_ptr);
+ }
+ 
+-FC_FUNC( mpi_type_create_hvector, MPI_TYPE_CREATE_HVECTOR )
++void FC_FUNC( mpi_type_create_hvector, MPI_TYPE_CREATE_HVECTOR )
+          (int * count,   long * blocklen, long * stride,
+           int * oldtype, int * newtype,   int * ierr)
+ {
+@@ -488,7 +488,7 @@
+ 
+ /*******************************************************/
+ 
+-FC_FUNC( mpi_type_indexed, MPI_TYPE_INDEXED )
++void FC_FUNC( mpi_type_indexed, MPI_TYPE_INDEXED )
+          (int * count,   int * blocklens, int * displacements,
+           int * oldtype, int * newtype,   int * ierr)
+ {
+@@ -524,7 +524,7 @@
+ 
+ /*******************************************************/
+ 
+-FC_FUNC( mpi_type_create_indexed_block, MPI_TYPE_CREATE_INDEXED_BLOCK )
++void FC_FUNC( mpi_type_create_indexed_block, MPI_TYPE_CREATE_INDEXED_BLOCK )
+          (int * count,   int * blocklen, int * displacements,
+           int * oldtype, int * newtype,  int * ierr)
+ {
+@@ -557,7 +557,7 @@
+ 
+ /*******************************************************/
+ 
+-FC_FUNC( mpi_type_hindexed, MPI_TYPE_HINDEXED )
++void FC_FUNC( mpi_type_hindexed, MPI_TYPE_HINDEXED )
+          (int * count,   int * blocklens, MPI_Aint * displacements,
+           int * oldtype, int * newtype,   int * ierr)
+ {
+@@ -621,7 +621,7 @@
+ /* MPI_Type_size:  Returns the sum of the lengths of each simple
+  * type that makes up the data type argument
+  */
+-FC_FUNC( mpi_type_size, MPI_TYPE_SIZE )(int * type, int * size, int * ierr)
++void FC_FUNC( mpi_type_size, MPI_TYPE_SIZE )(int * type, int * size, int * ierr)
+ {
+   *ierr=MPI_Type_size(*type, size);
+ }
+@@ -645,7 +645,7 @@
+ /* MPI_Type_lb: Returns the lower bound (which may be overridden
+  * or calculated)
+  */
+-FC_FUNC( mpi_type_lb, MPI_TYPE_LB )(int * type, long * lb, int * ierr)
++void FC_FUNC( mpi_type_lb, MPI_TYPE_LB )(int * type, long * lb, int * ierr)
+ {
+   *ierr = MPI_Type_lb(*type, lb);
+ }
+@@ -665,7 +665,7 @@
+ /* MPI_Type_ub: Return upper bound (which may be overridden
+  * or calculated
+  */
+-FC_FUNC( mpi_type_ub, MPI_TYPE_UB )(int * type, long * ub, int * ierr)
++void FC_FUNC( mpi_type_ub, MPI_TYPE_UB )(int * type, long * ub, int * ierr)
+ {
+   *ierr = MPI_Type_ub(*type, ub);
+ }
+@@ -686,12 +686,12 @@
+  * MPI_Address
+  * Return address of an object
+  */
+-FC_FUNC( mpi_get_address, MPI_ADDRESS )(void * loc, long * address, int * ierr)
++void FC_FUNC( mpi_get_address, MPI_ADDRESS )(void * loc, long * address, int * ierr)
+ {
+   *ierr = FGet_address(loc, address);
+ }
+ 
+-FC_FUNC( mpi_address, MPI_ADDRESS )(void * loc, long * address, int * ierr)
++void FC_FUNC( mpi_address, MPI_ADDRESS )(void * loc, long * address, int * ierr)
+ {
+   *address = (long) loc;
+   *ierr = FGet_address(loc, address);
+@@ -716,7 +716,7 @@
+ 
+ /* MPI_Type_extent: return ub-lb, plus padding
+  */
+-FC_FUNC( mpi_type_extent, MPI_TYPE_EXTENT)(int * type, long * extent, int * ierr)
++void FC_FUNC( mpi_type_extent, MPI_TYPE_EXTENT)(int * type, long * extent, int * ierr)
+ {
+   *ierr = MPI_Type_extent(*type, extent);
+ }
+@@ -772,7 +772,7 @@
+ 
+ /***********************/
+ 
+-FC_FUNC( mpi_type_commit, MPI_TYPE_COMMIT )(int * datatype, int * ierr)
++void FC_FUNC( mpi_type_commit, MPI_TYPE_COMMIT )(int * datatype, int * ierr)
+ {
+   *ierr = MPI_Type_commit(datatype);
+ }
+@@ -786,7 +786,7 @@
+ }
+ 
+ /**********************/
+-FC_FUNC( mpi_type_free, MPI_TYPE_FREE )(int * datatype, int * ierr)
++void FC_FUNC( mpi_type_free, MPI_TYPE_FREE )(int * datatype, int * ierr)
+ {
+   *ierr = MPI_Type_free(datatype);
+ }
+@@ -807,7 +807,7 @@
+  */
+ 
+ #ifdef TEST_INTERNAL
+-FC_FUNC( print_typemap, PRINT_TYPEMAP )(int * type, int * ierr)
++void FC_FUNC( print_typemap, PRINT_TYPEMAP )(int * type, int * ierr)
+ {
+   *ierr = print_typemap(*type);
+ }
