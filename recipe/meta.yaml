@@ -21,6 +21,7 @@ build:
 requirements:
   build:
     # Unix
+    - gnuconfig  # [unix]
     - {{ compiler('c') }}  # [unix]
     - {{ compiler('cxx') }}  # [unix]
     - {{ compiler('fortran') }}  # [unix]
