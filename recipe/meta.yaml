@@ -9,10 +9,7 @@ source:
   url: https://github.com/MCSclimate/mpi-serial/archive/refs/tags/MPIserial_{{ version }}.tar.gz
   sha256: 35b90b079062bb96415147d065db508d4969d30df39384d842620c2a112c4710
   patches:
-    - 0001-Rearrange-code-and-other-minor-fixes-needed-for-comp.patch
     - fix-makefile.patch
-    - add-types-to-fortran-subroutines.patch
-    - fix-intercomm-merge.patch
 
 build:
   number: 0
