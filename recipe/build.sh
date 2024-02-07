@@ -8,6 +8,7 @@ export AR="${AR}"
 export INSTALL="install"
 export FCFLAGS="${FFLAGS}"
 
+autoreconf -iv
 ./configure --prefix=${PREFIX}
 make
 make install
