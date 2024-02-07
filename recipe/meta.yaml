@@ -9,10 +9,7 @@ source:
   url: https://github.com/MCSclimate/mpi-serial/archive/refs/tags/MPIserial_{{ version }}.tar.gz
   sha256: 2faf459ea1f37020662067e7ab6c76b926501c4b94e8fdf77591c0040ba1f006
   patches:
-    - 0001-Rearrange-code-and-other-minor-fixes-needed-for-comp.patch
-    - fix-makefile.patch
-    - add-types-to-fortran-subroutines.patch
-    - fix-intercomm-merge.patch
+    - patches/fix-makefile.patch
 
 build:
   number: 0
@@ -22,14 +19,12 @@ build:
 
 requirements:
   build:
-    # Unix
     - gnuconfig  # [unix]
     - {{ compiler('c') }}  # [unix]
     - {{ compiler('cxx') }}  # [unix]
     - {{ compiler('fortran') }}  # [unix]
     - coreutils  # [unix]
     - make  # [unix]
-    # Win
     - {{ compiler('m2w64_c') }}  # [win]
     - {{ compiler('m2w64_cxx') }}  # [win]
     - {{ compiler('m2w64_fortran') }}  # [win]
@@ -64,7 +59,6 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
-  # The doc_url and dev_url are optional.
   doc_url: https://github.com/MCSclimate/mpi-serial
   dev_url: https://github.com/MCSclimate/mpi-serial
 
