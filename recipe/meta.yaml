@@ -8,8 +8,6 @@ package:
 source:
   url: https://github.com/MCSclimate/mpi-serial/archive/refs/tags/MPIserial_{{ version }}.tar.gz
   sha256: 2faf459ea1f37020662067e7ab6c76b926501c4b94e8fdf77591c0040ba1f006
-  patches:
-    - patches/fix-makefile.patch
 
 build:
   number: 0
