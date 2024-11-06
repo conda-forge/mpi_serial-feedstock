@@ -1,5 +1,5 @@
 {% set name = "mpi_serial" %}
-{% set version = "2.5.0" %}
+{% set version = "2.5.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/MCSclimate/mpi-serial/archive/refs/tags/MPIserial_{{ version }}.tar.gz
-  sha256: 2faf459ea1f37020662067e7ab6c76b926501c4b94e8fdf77591c0040ba1f006
+  sha256: 7ba361370277e8fd71962283b05d01bf74570d4e32211312fe2eae4c5c78f496
 
 build:
   number: 0
@@ -19,6 +19,7 @@ requirements:
   build:
     - gnuconfig  # [unix]
     - {{ compiler('c') }}  # [unix]
+    - {{ stdlib("c") }}    # [unix]
     - {{ compiler('cxx') }}  # [unix]
     - {{ compiler('fortran') }}  # [unix]
     - coreutils  # [unix]
@@ -27,6 +28,7 @@ requirements:
     - automake  # [unix]
     - libtool   # [unix]
     - {{ compiler('m2w64_c') }}  # [win]
+    - {{ stdlib("m2w64_c") }}    # [win]
     - {{ compiler('m2w64_cxx') }}  # [win]
     - {{ compiler('m2w64_fortran') }}  # [win]
     - m2-autoconf  # [win]
