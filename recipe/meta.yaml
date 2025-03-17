@@ -1,5 +1,5 @@
 {% set name = "mpi_serial" %}
-{% set version = "2.5.1" %}
+{% set version = "2.5.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/MCSclimate/mpi-serial/archive/refs/tags/MPIserial_{{ version }}.tar.gz
-  sha256: 7ba361370277e8fd71962283b05d01bf74570d4e32211312fe2eae4c5c78f496
+  sha256: a9e828d34e379cfef5a95a06be683ea9ce0acc2fce794e0b9e9d920efeb38bf0
 
 build:
   number: 0
