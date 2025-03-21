@@ -1,0 +1,14 @@
+diff --git a/configure b/configure
+--- configure
++++ configure
+@@ -3897,9 +3897,9 @@
+ 
+ # ARCHIVE COMMAND SIMILAR ACROSS ALL PLATFORMS
+ 
+ if test -z "$AR"; then
+-   AR="ar cruv"
++   AR=ar
+ fi
+ 
+ # RANLIB
+ 
