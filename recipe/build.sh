@@ -8,7 +8,7 @@ export AR="${AR}"
 export INSTALL="install"
 export FCFLAGS="${FFLAGS}"
 
-autoreconf -iv
-./configure --prefix=${PREFIX}
+autoreconf -i
+./configure --prefix=${PREFIX} CFLAGS="-Wall -Werror -Wno-format"
 make
 make install
