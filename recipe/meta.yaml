@@ -1,5 +1,5 @@
 {% set name = "mpi_serial" %}
-{% set version = "2.5.3" %}
+{% set version = "2.5.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/ESMCI/mpi-serial/archive/refs/tags/MPIserial_{{ version }}.tar.gz
-  sha256: 9575cc259a3e5f3f244c76e9b7464b59ed77159fdcb99ef7ae7019ac69ebb95e
+  sha256: f65902cee9f1661d87859dea9804c55b5d72f7b74d8b583fd98118a66e1f4a8e
 
 build:
   number: 0
