@@ -14,5 +14,7 @@ export FCFLAGS="${FFLAGS}"
 autoreconf -i
 ./configure --prefix=${PREFIX}
 make
-make tests
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
+  make tests
+fi
 make install
