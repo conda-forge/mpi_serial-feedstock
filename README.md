@@ -83,7 +83,7 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-mpi_serial-green.svg)](https://anaconda.org/conda-forge/mpi_serial) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mpi_serial.svg)](https://anaconda.org/conda-forge/mpi_serial) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mpi_serial.svg)](https://anaconda.org/conda-forge/mpi_serial) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mpi_serial.svg)](https://anaconda.org/conda-forge/mpi_serial) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-mpi__serial-green.svg)](https://anaconda.org/conda-forge/mpi_serial) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mpi_serial.svg)](https://anaconda.org/conda-forge/mpi_serial) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mpi_serial.svg)](https://anaconda.org/conda-forge/mpi_serial) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mpi_serial.svg)](https://anaconda.org/conda-forge/mpi_serial) |
 
 Installing mpi_serial
 =====================
