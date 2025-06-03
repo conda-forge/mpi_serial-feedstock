@@ -3,15 +3,15 @@ About mpi_serial-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/mpi_serial-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/MCSclimate/mpi-serial
+Home: https://github.com/ESMCI/mpi-serial
 
 Package license: BSD-3-Clause
 
 Summary: MPI library for single processor
 
-Development: https://github.com/MCSclimate/mpi-serial
+Development: https://github.com/ESMCI/mpi-serial
 
-Documentation: https://github.com/MCSclimate/mpi-serial
+Documentation: https://github.com/ESMCI/mpi-serial
 
 This library provides a one-processor version of MPI.  Most common MPI calls,
 including all that are necessary for the Model Coupling Toolkit, are supported.
@@ -83,7 +83,7 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-mpi_serial-green.svg)](https://anaconda.org/conda-forge/mpi_serial) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mpi_serial.svg)](https://anaconda.org/conda-forge/mpi_serial) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mpi_serial.svg)](https://anaconda.org/conda-forge/mpi_serial) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mpi_serial.svg)](https://anaconda.org/conda-forge/mpi_serial) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-mpi__serial-green.svg)](https://anaconda.org/conda-forge/mpi_serial) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mpi_serial.svg)](https://anaconda.org/conda-forge/mpi_serial) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mpi_serial.svg)](https://anaconda.org/conda-forge/mpi_serial) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mpi_serial.svg)](https://anaconda.org/conda-forge/mpi_serial) |
 
 Installing mpi_serial
 =====================
