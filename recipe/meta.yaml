@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/MCSclimate/mpi-serial/archive/refs/tags/MPIserial_{{ version }}.tar.gz
+  url: https://github.com/ESMCI/mpi-serial/archive/refs/tags/MPIserial_{{ version }}.tar.gz
   sha256: 9575cc259a3e5f3f244c76e9b7464b59ed77159fdcb99ef7ae7019ac69ebb95e
 
 build:
@@ -53,7 +53,7 @@ test:
     - test -f $PREFIX/include/mpif.h
 
 about:
-  home: https://github.com/MCSclimate/mpi-serial
+  home: https://github.com/ESMCI/mpi-serial
   summary: MPI library for single processor
   description: |
     This library provides a one-processor version of MPI.  Most common MPI calls,
@@ -62,8 +62,8 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
-  doc_url: https://github.com/MCSclimate/mpi-serial
-  dev_url: https://github.com/MCSclimate/mpi-serial
+  doc_url: https://github.com/ESMCI/mpi-serial
+  dev_url: https://github.com/ESMCI/mpi-serial
 
 extra:
   recipe-maintainers:
