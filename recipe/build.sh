@@ -4,11 +4,13 @@ cp $BUILD_PREFIX/share/gnuconfig/config.* .
 
 set -xe
 
-export AR="${AR}"
+export AR="${AR} cruv"
 export INSTALL="install"
+export MKINSTALLDIRS="mkdir -p"
+export libdir="${PREFIX}/lib"
+export includedir="${PREFIX}/include"
 export FCFLAGS="${FFLAGS}"
 
-autoreconf -iv
 ./configure --prefix=${PREFIX}
 make
 make install
