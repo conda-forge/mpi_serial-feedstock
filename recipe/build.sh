@@ -11,6 +11,8 @@ export libdir="${PREFIX}/lib"
 export includedir="${PREFIX}/include"
 export FCFLAGS="${FFLAGS}"
 
+autoreconf -i
 ./configure --prefix=${PREFIX}
 make
+make tests
 make install
